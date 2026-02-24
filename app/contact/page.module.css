@@ -1,0 +1,29 @@
+/*섹션 간격, 배경, 전체 그리드만 */
+
+.page {
+    padding-bottom: 80px;
+    background: #fff;
+}
+
+.section {
+    padding: 56px 0;
+}
+
+.sectionTitle {
+    margin: 0 0 20px;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* 모바일 타이틀 크기 조정 */
+@media (max-width: 640px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .sectionTitle {
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+}
