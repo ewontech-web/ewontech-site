@@ -1,0 +1,94 @@
+.title {
+    margin: 0 0 8px;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.card {
+    border: 1px solid #e7e7e7;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.mapFrame {
+    height: 420px;
+}
+
+.addrCard {
+    margin-top: 14px;
+    border: 1px solid #e7e7e7;
+    border-radius: 14px;
+    background: #f5f5f5;
+    padding: 14px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.addrBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.addrLabel {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.addrText {
+    font-size: 13px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.miniBtn {
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid #cfe0ff;
+    background: #fff;
+    color: #1f4bd8;
+    white-space: nowrap;
+}
+
+.strong {
+    background: #1f4bd8;
+    border-color: #1f4bd8;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .addrCard {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .addrText {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: initial;
+    }
+
+    .actions {
+        justify-content: flex-end;
+    }
+}
