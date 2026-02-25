@@ -1,0 +1,55 @@
+.wrap {
+    display: flex;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e7e9ef;
+    background: #fff;
+}
+
+/* 기본: 동일 폭 */
+.panel {
+    position: relative;
+    flex: 1 1 0;
+    transition: flex 260ms ease, filter 260ms ease;
+    min-width: 0;
+}
+
+/* 이미지 */
+.img {
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 살짝 딤(너무 튀는거 방지) */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.06);
+    opacity: 1;
+    transition: opacity 260ms ease;
+}
+
+/* ✅ 데스크탑 hover: 올린 패널만 커짐 */
+@media (hover: hover) and (pointer: fine) {
+    .wrap:hover .panel {
+        flex: 1 1 0;
+    }
+
+    .wrap:hover .panel:hover {
+        flex: 2.2 1 0;
+        /* 커지는 정도 */
+    }
+
+    .wrap:hover .panel:hover .overlay {
+        opacity: 0;
+        /* 올린 패널은 선명하게 */
+    }
+}
+
+/* 모바일: hover 없으니 그냥 동일 폭 + 가로 스크롤로 보고 싶으면 옵션 */
+@media (max-width: 640px) {
+    .wrap {
+        border-radius: 14px;
+    }
+}

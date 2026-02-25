@@ -1,0 +1,83 @@
+.page {
+    background: #fff;
+}
+
+.section {
+    padding: 72px 0;
+}
+
+.sectionAlt {
+    background: #ffffff;
+}
+
+.sectionSoft {
+    background: #f7f8fa;
+}
+
+.sectionBottom {
+    padding-bottom: 96px;
+}
+
+.inquiry {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.inquiryTitle {
+    font-size: 22px;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+}
+
+.inquiryBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border: 1px solid #e6e8ee;
+    border-radius: 14px;
+    padding: 18px 18px;
+    background: #fff;
+}
+
+.inquiryText {
+    margin: 0;
+    color: #444b57;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.inquiryBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #2f6fed;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.inquiryBtn:hover {
+    opacity: 0.92;
+}
+
+@media (max-width: 640px) {
+    .section {
+        padding: 56px 0;
+    }
+
+    .inquiryBox {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .inquiryBtn {
+        width: 100%;
+    }
+}
