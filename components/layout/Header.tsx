@@ -8,7 +8,7 @@ import Container from "./Container";
 const nav = [
     { href: "/", label: "Home" },
     { href: "/company", label: "Company" },
-    { href: "/products", label: "Products" },
+    { href: "/business", label: "Business" },
     { href: "/contact", label: "Contact" },
 ];
 

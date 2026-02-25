@@ -1,0 +1,94 @@
+/* 타이틀(섹션3 톤과 맞춤: 중앙) */
+.head {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    opacity: 0.55;
+    text-transform: uppercase;
+}
+
+.title {
+    margin: 10px 0 0;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+}
+
+.sub {
+    margin: 10px auto 0;
+    max-width: 760px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.58);
+}
+
+/* 데스크탑/태블릿: 3열 */
+.grid {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.card {
+    padding: 16px 16px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.015);
+}
+
+.cardTitle {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: rgba(20, 60, 130, 0.92);
+}
+
+.cardDesc {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(0, 0, 0, 0.70);
+}
+
+/* ✅ 모바일: “세로 나열”이지만 과하지 않게 → 리스트 형태 */
+@media (max-width: 700px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .sub {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .grid {
+        /* 카드 그리드 → 세로 리스트로 전환 */
+        grid-template-columns: 1fr;
+        gap: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        background: transparent;
+    }
+
+    .card {
+        /* “카드감” 줄이기: 배경/라운드 제거하고 구분선으로만 */
+        border: none;
+        background: transparent;
+        border-radius: 0;
+
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .cardTitle {
+        font-size: 15px;
+    }
+
+    .cardDesc {
+        margin-top: 8px;
+        font-size: 13px;
+    }
+}

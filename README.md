@@ -22,7 +22,7 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
 
 - `app/page.tsx` : Home
 - `app/company/page.tsx` : Company
-- `app/products/page.tsx` : Products
+- `app/business/page.tsx` : Business
 - `app/contact/page.tsx` : Contact
 - `app/api/contact/route.ts` : Contact 문의 API (검증 + hCaptcha verify + Resend 메일 발송)
 - `app/layout.tsx` : 공통 레이아웃 적용
@@ -99,6 +99,9 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
 **Certification**
 - `public/company/cert-1.jpg` ~ `cert-4.jpg` : 인증서 이미지(모바일 2열/비율 통일 적용)
 
+#### Business
+- `public/business/cat-1.jpg` ~ `cat-6.jpg` : 주요 생산 품목(ProductionShowcase) 카테고리 이미지
+
 #### Contact
 - `public/contact/hero.jpg` : Contact Hero 배경
 - `public/contact/inquiry.jpg` : 문의 섹션(폼 옆 이미지)
@@ -161,4 +164,23 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
 - Company에 “운영 체계와 생산 역량” 섹션 추가 결정(요약형)
   - Company에서는 요약만, 상세는 Business로 유도하는 원칙 유지
 
----
+### v1 5회차 (Business 페이지 v1) Business (진행)
+- Business 라우트 추가
+  - `app/business/page.tsx` + `page.module.css`
+- Business 섹션 구성 확정 및 구현(요약 → 쇼케이스 → 프로세스)
+  - `components/business/BusinessAreas.tsx` + `BusinessAreas.module.css`
+    - Our Business(3개 항목) 구성
+    - 모바일에서 과하지 않게 세로 리스트 형태로 정리
+  - `components/business/ProductionShowcase.tsx` + `ProductionShowcase.module.css`
+    - “주요 생산 품목” 지그재그 레이아웃(이미지/텍스트 교차)
+    - 텍스트는 `요약` / 구분선 / `생산 경험` 구조로 고정
+    - 데스크탑: 이미지 크기 통일(max-width 520px, height 280px)
+    - 모바일: 사진 위 / 글 아래로 정렬 + 세트 구분을 위한 배경(모바일 전용) 적용
+  - `components/business/ProcessStrip.tsx` + `ProcessStrip.module.css`
+    - Process 섹션 UI 개선(데스크탑/모바일 대응 포함)
+- 섹션 키커(kicker) 라벨 정리(중복 “BUSINESS” 제거)
+  - Our Business: `CAPABILITIES`
+  - 주요 생산 품목: `SHOWCASE`
+  - Process: `WORKFLOW`
+- Business 이미지 에셋 추가
+  - `public/business/cat-1.jpg` ~ `cat-6.jpg`

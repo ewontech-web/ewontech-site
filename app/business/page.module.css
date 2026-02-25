@@ -1,0 +1,17 @@
+.main {
+    background: #fff;
+}
+
+.section {
+    padding: 72px 0;
+}
+
+.muted {
+    background: #f7f8fa;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 52px 0;
+    }
+}
