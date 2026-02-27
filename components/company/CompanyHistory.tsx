@@ -10,7 +10,7 @@ const HISTORY: HistoryItem[] = [
     { date: "2004.07", text: "자재구매/납품(외주) OEM 협업" },
     { date: "2005.02", text: "현장 대응/공정 지원, LINE 협업" },
     { date: "2007.02", text: "법인 전환" },
-    { date: "2011.02", text: "ISO 9001, ISO 14000 인증 획득" },
+    { date: "2011.02", text: "ISO 9001, ISO 14001 인증 획득" },
     { date: "2012.04", text: "운영 확장 및 협력 네트워크 구축" },
     { date: "2013–2014", text: "LED LINE, 배전반/제어반/제조 협력" },
     { date: "2015–2016", text: "자재 공급 범위 확대, 가공/조립 협력" },
@@ -20,145 +20,53 @@ const HISTORY: HistoryItem[] = [
 ];
 
 export default function CompanyHistory() {
-    const history = useMemo(() => HISTORY, []);
-    const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
+    const items = useMemo(() => HISTORY, []);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    // ✅ 데스크탑은 효과가 돌지 않으므로 0이 유지 → “첫 카드만” 기본 강조
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-
-    const lastScrollYRef = useRef<number>(0);
-    const tickingRef = useRef<boolean>(false);
-    const activeRef = useRef<number>(0);
-    const elsRef = useRef<HTMLDivElement[]>([]);
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
-        // ✅ 모바일에서만 “화면 스크롤 기반 active”
-        const mq = window.matchMedia("(max-width: 640px)");
-        if (!mq.matches) return;
+        const els = itemRefs.current.filter(Boolean) as HTMLDivElement[];
+        if (!els.length) return;
 
-        // 요소 캐시
-        elsRef.current = itemsRef.current.filter(Boolean) as HTMLDivElement[];
-        if (!elsRef.current.length) return;
+        // 모바일/데스크탑 모두 자연스러운 active 강조
+        const io = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((e) => e.isIntersecting)
+                    .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
+                if (!visible[0]) return;
 
-        activeRef.current = 0;
-        setActiveIndex(0);
-        lastScrollYRef.current = window.scrollY;
-
-        const getCenterY = () => window.innerHeight * 0.45; // 중앙선 위치(조절 가능)
-        const findClosestIndex = (centerY: number) => {
-            let bestIdx = 0;
-            let bestDist = Infinity;
-
-            const els = elsRef.current;
-            for (let i = 0; i < els.length; i++) {
-                const r = els[i].getBoundingClientRect();
-                const c = r.top + r.height / 2;
-                const d = Math.abs(c - centerY);
-                if (d < bestDist) {
-                    bestDist = d;
-                    bestIdx = i;
-                }
+                const idx = Number((visible[0].target as HTMLElement).dataset.idx);
+                if (!Number.isNaN(idx)) setActiveIndex(idx);
+            },
+            {
+                root: null,
+                rootMargin: "-40% 0px -55% 0px",
+                threshold: [0.15, 0.3, 0.5],
             }
-            return bestIdx;
-        };
+        );
 
-        const updateActive = () => {
-            tickingRef.current = false;
-
-            const els = elsRef.current;
-            if (!els.length) return;
-
-            const centerY = getCenterY();
-            const current = activeRef.current;
-
-            const scrollY = window.scrollY;
-            const dir = scrollY > lastScrollYRef.current ? "down" : "up";
-            lastScrollYRef.current = scrollY;
-
-            const curRect = els[current].getBoundingClientRect();
-            const curCenter = curRect.top + curRect.height / 2;
-
-            // ✅ 다음/이전 “중심”이 중앙선을 통과해야만 넘어감(순서 보장)
-            if (dir === "down" && current < els.length - 1) {
-                const nextRect = els[current + 1].getBoundingClientRect();
-                const nextCenter = nextRect.top + nextRect.height / 2;
-
-                if (nextCenter <= centerY) {
-                    activeRef.current = current + 1;
-                    setActiveIndex(current + 1);
-                    return;
-                }
-
-                // 급스크롤 보정
-                if (curCenter < centerY - 140) {
-                    const bestIdx = findClosestIndex(centerY);
-                    if (bestIdx !== current) {
-                        activeRef.current = bestIdx;
-                        setActiveIndex(bestIdx);
-                    }
-                }
-            }
-
-            if (dir === "up" && current > 0) {
-                const prevRect = els[current - 1].getBoundingClientRect();
-                const prevCenter = prevRect.top + prevRect.height / 2;
-
-                if (prevCenter >= centerY) {
-                    activeRef.current = current - 1;
-                    setActiveIndex(current - 1);
-                    return;
-                }
-
-                // 급스크롤 보정
-                if (curCenter > centerY + 140) {
-                    const bestIdx = findClosestIndex(centerY);
-                    if (bestIdx !== current) {
-                        activeRef.current = bestIdx;
-                        setActiveIndex(bestIdx);
-                    }
-                }
-            }
-        };
-
-        const onScroll = () => {
-            if (tickingRef.current) return;
-            tickingRef.current = true;
-            requestAnimationFrame(updateActive);
-        };
-
-        const onResize = () => {
-            // 리사이즈 시 요소 캐시 갱신
-            elsRef.current = itemsRef.current.filter(Boolean) as HTMLDivElement[];
-            onScroll();
-        };
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onResize);
-
-        onScroll();
-
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", onResize);
-        };
+        els.forEach((el) => io.observe(el));
+        return () => io.disconnect();
     }, []);
 
     return (
-        <div className={styles.wrap}>
-            <h2 className={styles.title}>History</h2>
-            <p className={styles.subtitle}>
-                이원테크의 주요 이력과 협력 경험을 요약했습니다.
-            </p>
+        <section className={styles.wrap} aria-label="Company History">
+            <div className={styles.head}>
+                <h2 className={styles.title}>History</h2>
+                <p className={styles.subtitle}>이원테크의 주요 이력과 협력 경험을 요약했습니다.</p>
+            </div>
 
             <div className={styles.timeline}>
-                {history.map((h, idx) => (
+                {items.map((h, idx) => (
                     <div
                         key={`${h.date}-${idx}`}
                         ref={(el) => {
-                            itemsRef.current[idx] = el;
+                            itemRefs.current[idx] = el; // ✅ ref 에러 방지: 블록 콜백
                         }}
-                        className={`${styles.item} ${activeIndex === idx ? styles.active : ""
-                            }`}
+                        data-idx={idx}
+                        className={`${styles.item} ${idx === activeIndex ? styles.active : ""}`}
                     >
                         <div className={styles.marker} aria-hidden="true">
                             <span className={styles.dot} />
@@ -173,9 +81,7 @@ export default function CompanyHistory() {
                 ))}
             </div>
 
-            <p className={styles.footerNote}>
-                더 자세한 이력 및 협력 범위는 문의 시 공유드리겠습니다.
-            </p>
-        </div>
+            <p className={styles.footerNote}>더 자세한 이력 및 협력 범위는 문의 시 공유드리겠습니다.</p>
+        </section>
     );
 }

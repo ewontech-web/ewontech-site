@@ -40,6 +40,11 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
 - `components/common/HoverCollage/*`  
   여러 이미지 콜라주(hover 시 특정 패널 확대)
 
+#### Home (섹션 단위 컴포넌트)
+- `components/home/HomeS1.tsx` ~ `HomeS4.tsx` + 각 `*.module.css`  
+  Home 섹션(1~4)
+- `components/home/index.ts` : 배럴 export
+
 #### Company (섹션 단위 컴포넌트)
 - `components/company/CompanyIntro.tsx` + `CompanyIntro.module.css`  
   회사 소개(텍스트 + 이미지, 모바일에서 이미지 숨김)
@@ -55,6 +60,27 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
   연혁(모바일 스크롤 기반 active / 데스크탑 첫 카드 강조)
 - `components/company/index.ts` : 배럴 export
 
+#### Business (섹션 단위 컴포넌트)
+- `components/business/BusinessAreas.tsx` + `BusinessAreas.module.css`  
+  Our Business(사업 영역) 요약 섹션
+- `components/business/ProductionShowcase.tsx` + `ProductionShowcase.module.css`  
+  주요 생산 품목(카테고리) 쇼케이스 섹션
+- `components/business/ProcessStrip.tsx` + `ProcessStrip.module.css`  
+  진행 프로세스(Workflow) 섹션
+- `components/business/index.ts` : 배럴 export
+
+#### Contact (섹션 단위 컴포넌트)
+
+- `components/contact/ContactHero.tsx` + `ContactHero.module.css`  
+  Contact 상단 히어로(배너)
+- `components/contact/ContactInquirySection.tsx` + `ContactInquirySection.module.css`  
+  문의 섹션(폼 + 우측 이미지)
+- `components/contact/ContactForm.tsx` + `ContactForm.module.css`  
+  문의 폼(UI + 상태 UX + hCaptcha 위젯 + 전송)
+- `components/contact/ContactMapSection.tsx` + `ContactMapSection.module.css`  
+  오시는 길(구글 지도 iframe + 네이버/카카오/길찾기 버튼)
+- `components/contact/index.ts` : 배럴 export
+
 #### Layout (공통)
 
 - `components/layout/Header.tsx` : 상단 헤더/내비게이션
@@ -62,21 +88,7 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
 - `components/layout/Container.tsx` : 컨테이너(최대 폭/패딩)
 - `components/layout/ContactCTA.tsx` : 공통 문의 CTA(필요 시)
 
-#### Contact (섹션 단위 컴포넌트)
-
-- `components/contact/ContactHero.tsx` + `ContactHero.module.css`  
-  Contact 상단 히어로(배너)
-
-- `components/contact/ContactInquirySection.tsx` + `ContactInquirySection.module.css`  
-  문의 섹션(폼 + 우측 이미지)
-
-- `components/contact/ContactForm.tsx` + `ContactForm.module.css`  
-  문의 폼(UI + 상태 UX + hCaptcha 위젯 + 전송)
-
-- `components/contact/ContactMapSection.tsx` + `ContactMapSection.module.css`  
-  오시는 길(구글 지도 iframe + 네이버/카카오/길찾기 버튼)
-
-- `components/contact/index.ts` : 배럴 export
+---
 
 ### Public Assets
 
@@ -184,3 +196,63 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
   - Process: `WORKFLOW`
 - Business 이미지 에셋 추가
   - `public/business/cat-1.jpg` ~ `cat-6.jpg`
+
+  ### v1 6회차 (Home 페이지 v1) Home (마무리)
+- Home 페이지 섹션 구조 구현(섹션 1~4)
+  - `components/home/HomeS1.tsx~HomeS4.tsx` + 각 `*.module.css`
+- Home 섹션2(Scope) 인터랙션/반응형 개선
+  - 데스크탑: 단계 리스트 + 우측 상세(스크롤에 따라 단계 전환)
+  - 모바일: 과하지 않게 레이아웃 단순화/가독성 개선(세로형 기준)
+- Home 자동 화면 전환(스냅) 로직 적용
+  - S1 → S2: 75% 스크롤 시 자동 이동
+  - S2 → S3: S3 영역 진입 후 “조금 더” 스크롤하면 S3 시작점으로 한 번 잡아줌
+  - S3 → S4: 75% 스크롤 시 자동 이동
+  - 모바일에서도 동작하도록 튜닝(미세 스크롤 무시, 락 타임 조절)
+- Home 스크롤 컨테이너(#scrollRoot) 기준 스크롤 처리
+  - Header/ Footer에서 “현재 페이지 메뉴 클릭 시 맨 위로 이동” 동작을 홈에서도 정상 동작하도록 통일
+- Header 모바일 드로어 UX 개선
+  - 메뉴 오픈 시 배경(overlay) 클릭으로 닫기
+  - 현재 페이지 메뉴 클릭 시 “새로고침 대신 맨 위로 이동”(무반응 방지)
+- Footer에도 동일 페이지 클릭 시 “맨 위로 이동” 동작 적용
+
+> NOTE (v1 마감): 최근 CSS Modules 적용이 불안정한 이슈가 있어,
+> v1은 현재 동작하는 “기존 스타일/구성” 기준으로 마무리합니다.
+> v2에서 파일 중복/스타일 구조를 정리하며 전체 UI를 한 번 더 다듬습니다.
+
+---
+
+## Project Structure (v1)
+
+```txt
+.
+├─ app/
+│  ├─ api/
+│  ├─ business/
+│  ├─ company/
+│  ├─ contact/
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  ├─ page.tsx
+│  └─ page.module.css
+├─ components/
+│  ├─ business/
+│  ├─ common/
+│  ├─ company/
+│  ├─ contact/
+│  ├─ home/
+│  │  ├─ HomeS1.tsx
+│  │  ├─ HomeS1.module.css
+│  │  ├─ HomeS2.tsx
+│  │  ├─ HomeS2.module.css
+│  │  ├─ HomeS3.tsx
+│  │  ├─ HomeS3.module.css
+│  │  ├─ HomeS4.tsx
+│  │  └─ HomeS4.module.css
+│  ├─ layout/
+│  │  ├─ ContactCTA.tsx
+│  │  ├─ Container.tsx
+│  │  ├─ Footer.tsx
+│  │  └─ Header.tsx
+│  └─ index.ts
+├─ README.md
+└─ package.json

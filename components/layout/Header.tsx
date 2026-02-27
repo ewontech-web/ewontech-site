@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Container from "./Container";
 
 const nav = [
@@ -12,10 +13,25 @@ const nav = [
     { href: "/contact", label: "Contact" },
 ];
 
+function scrollToTopSmart() {
+    const prefersReduce =
+        window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+
+    // ✅ 홈 전용 스크롤 컨테이너 우선
+    const root = document.getElementById("scrollRoot");
+    if (root) {
+        root.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
+        return;
+    }
+
+    // 일반 페이지(window)
+    window.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
+}
+
 export default function Header() {
     const [open, setOpen] = useState(false);
+    const pathname = usePathname();
 
-    // 메뉴 열렸을 때 스크롤 잠금
     useEffect(() => {
         if (!open) return;
         const prev = document.body.style.overflow;
@@ -25,14 +41,30 @@ export default function Header() {
         };
     }, [open]);
 
-    // 라우트 이동용: 링크 클릭 시 닫기
     const close = () => setOpen(false);
+
+    const handleNavClick =
+        (href: string, closeAfter = false) =>
+            (e: React.MouseEvent) => {
+                // 같은 페이지 링크 클릭 시: 맨 위로 + (모바일이면 메뉴 닫기)
+                if (href === pathname) {
+                    e.preventDefault();
+                    if (closeAfter) close();
+                    scrollToTopSmart();
+                    return;
+                }
+                if (closeAfter) close();
+            };
 
     return (
         <header className="sticky top-0 z-50 bg-white/80 backdrop-blur">
             <Container>
                 <div className="flex h-16 items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2 font-semibold">
+                    <Link
+                        href="/"
+                        onClick={handleNavClick("/", true)}
+                        className="flex items-center gap-2 font-semibold"
+                    >
                         <Image
                             className="h-8 w-[50px] object-contain"
                             src="/ewon_logo.png"
@@ -50,6 +82,7 @@ export default function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
+                                onClick={handleNavClick(item.href, false)}
                                 className="text-sm text-neutral-700 hover:text-black"
                             >
                                 {item.label}
@@ -60,6 +93,7 @@ export default function Header() {
                     {/* Desktop CTA */}
                     <Link
                         href="/contact"
+                        onClick={handleNavClick("/contact", false)}
                         className="hidden rounded-md bg-black px-3 py-2 text-sm text-white hover:bg-neutral-800 md:inline-flex"
                     >
                         문의하기
@@ -94,14 +128,21 @@ export default function Header() {
             {/* Mobile Drawer */}
             {open && (
                 <>
-                    {/* overlay */}
+                    {/* ✅ 화면 전체 overlay: 빨간 박스 포함 어디를 눌러도 닫힘 */}
                     <div
-                        className="fixed inset-0 z-50 bg-black/40"
-                        onClick={close}
+                        className="fixed inset-0 z-[999] bg-black/40"
+                        onPointerDown={close}
                         aria-hidden="true"
                     />
-                    {/* panel */}
-                    <div className="fixed right-0 top-0 z-50 h-dvh w-[78%] max-w-[340px] bg-white shadow-xl">
+
+                    {/* ✅ 오른쪽 패널: overlay 위에 위치 */}
+                    <div
+                        className="fixed right-0 top-0 z-[1000] h-dvh w-[78%] max-w-[340px] bg-white shadow-xl"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="모바일 메뉴"
+                        onPointerDown={(e) => e.stopPropagation()}
+                    >
                         <div className="flex h-16 items-center justify-between border-b border-neutral-100 px-4">
                             <span className="font-semibold">메뉴</span>
                             <button
@@ -132,7 +173,7 @@ export default function Header() {
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    onClick={close}
+                                    onClick={handleNavClick(item.href, true)}
                                     className="rounded-md px-3 py-3 text-base text-neutral-800 hover:bg-neutral-50"
                                 >
                                     {item.label}
@@ -142,7 +183,7 @@ export default function Header() {
                             <div className="mt-3 border-t border-neutral-100 pt-3">
                                 <Link
                                     href="/contact"
-                                    onClick={close}
+                                    onClick={handleNavClick("/contact", true)}
                                     className="inline-flex w-full items-center justify-center rounded-md bg-black px-3 py-3 text-sm font-semibold text-white hover:bg-neutral-800"
                                 >
                                     문의하기

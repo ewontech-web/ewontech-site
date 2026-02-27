@@ -5,6 +5,7 @@ import { ContactInquirySection, ContactMapSection } from "@/components/contact";
 import Container from "@/components/layout/Container";
 
 import PageHero from "../../components/common/PageHero";
+import Footer from "@/components/layout/Footer";
 
 <PageHero
     title="Company"
@@ -39,6 +40,8 @@ export default function ContactPage() {
                     <ContactMapSection />
                 </section>
             </section>
+
+            <Footer />
         </main>
     );
 }

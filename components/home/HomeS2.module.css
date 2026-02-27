@@ -1,0 +1,502 @@
+/* =========================
+   HomeS2.module.css - OPTIMIZED
+   Desktop: sticky shell + scroll track(anchors)
+   Mobile: vertical overlap stack (short & subtle)
+   ========================= */
+
+/* ===== Base ===== */
+.wrap {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1180px;
+
+    padding-top: clamp(88px, 22vh, 260px);
+    padding-bottom: clamp(64px, 16vh, 200px);
+}
+
+.kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-top: 6px;
+}
+
+.no {
+    font-weight: 900;
+    opacity: 0.85;
+}
+
+.label {
+    opacity: 0.75;
+}
+
+.statement {
+    margin: 10px 0 0;
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    font-weight: 900;
+    opacity: 0.92;
+    max-width: 46ch;
+}
+
+/* =========================
+   Desktop layout
+   ========================= */
+.scrollStage {
+    position: relative;
+    margin-top: clamp(18px, 3vw, 34px);
+}
+
+.stickyShell {
+    position: sticky;
+    top: clamp(88px, calc(50vh - 14vh), 160px);
+
+    display: grid;
+    grid-template-columns: minmax(240px, 320px) 1fr;
+    gap: clamp(28px, 6vw, 84px);
+    align-items: start;
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+@media (max-height: 720px) {
+    .stickyShell {
+        top: 90px;
+    }
+}
+
+/* LEFT */
+.left {
+    position: relative;
+    padding-left: 22px;
+    height: fit-content;
+    pointer-events: auto;
+}
+
+.rail {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 2px;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 22px;
+}
+
+.item {
+    opacity: 0.45;
+}
+
+.btn {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.stepNo {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    opacity: 0.8;
+}
+
+.stepTitle {
+    font-size: clamp(16px, 1.6vw, 20px);
+    font-weight: 950;
+    letter-spacing: -0.01em;
+    opacity: 0.65;
+}
+
+.active {
+    opacity: 1;
+}
+
+.active .dot {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.active .stepTitle {
+    opacity: 1;
+}
+
+.btn:focus-visible {
+    outline: 2px solid rgba(0, 0, 0, 0.55);
+    outline-offset: 4px;
+    border-radius: 12px;
+}
+
+/* RIGHT */
+.rightSticky {
+    pointer-events: auto;
+}
+
+.right {
+    max-width: 720px;
+}
+
+.detailKicker {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+}
+
+.detailTitle {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 950;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+.detailDesc {
+    font-size: clamp(14px, 1.2vw, 16px);
+    line-height: 1.75;
+    opacity: 0.82;
+}
+
+/* Scroll track */
+.anchors {
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+}
+
+.anchor {
+    height: clamp(200px, 22vh, 320px);
+    scroll-margin-top: 50vh;
+}
+
+/* =========================
+   Mobile: vertical overlap stack
+   - hide desktop rail/list/anchors/stickyShell
+   - show stacked sticky cards (short & subtle)
+   ========================= */
+@media (max-width: 900px) {
+    .wrap {
+        padding-top: clamp(40px, 10vh, 110px);
+        padding-bottom: clamp(34px, 8vh, 90px);
+        min-height: unset;
+    }
+
+    /* hide desktop mode blocks */
+    .scrollStage,
+    .left,
+    .rail,
+    .list,
+    .anchors {
+        display: none !important;
+    }
+
+    /* Stack container */
+    .mobileStack {
+        --stickyTop: clamp(64px, 12vh, 110px);
+        margin-top: 18px;
+        display: grid;
+        gap: 0;
+    }
+
+    /* shorter section length */
+    .mobileStepWrap {
+        height: 34vh;
+        /* ✅ 길이 줄임 (과함 방지) */
+    }
+
+    /* sticky overlap card (subtle) */
+    .mobileCard {
+        position: sticky;
+        top: calc(var(--stickyTop) + (var(--i) * 3px));
+        /* ✅ 겹침 약하게 */
+        z-index: calc(50 - var(--i));
+
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        border-radius: 18px;
+        background: #fff;
+        /* ✅ 과한 유리효과 제거 */
+        backdrop-filter: none;
+
+        padding: 16px;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+        /* ✅ 그림자 약하게 */
+
+        transform: translateY(6px);
+        opacity: 0.95;
+        transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .mobileActive {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobileTop {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .mobileNo {
+        font-weight: 950;
+        letter-spacing: 0.02em;
+        opacity: 0.8;
+    }
+
+    .mobileTitle {
+        font-size: 16px;
+        /* ✅ 컴팩트 */
+        font-weight: 950;
+        letter-spacing: -0.01em;
+    }
+
+    .mobileDesc {
+        font-size: 13px;
+        /* ✅ 컴팩트 */
+        line-height: 1.7;
+        opacity: 0.8;
+    }
+}
+
+/* ===== Mobile: timeline (swap with CompanyHistory) ===== */
+@media (max-width: 900px) {
+
+    /* 모바일에서는 데스크탑 구조 숨김 */
+    .scrollStage,
+    .stickyShell,
+    .left,
+    .rail,
+    .list,
+    .anchors {
+        display: none !important;
+    }
+
+    .wrap {
+        padding-top: clamp(40px, 10vh, 110px);
+        padding-bottom: clamp(34px, 8vh, 90px);
+        min-height: unset;
+    }
+
+    .mTimeline {
+        margin-top: 18px;
+        text-align: left;
+    }
+
+    .mItem {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        padding: 10px 0;
+        opacity: 0.7;
+    }
+
+    .mMarker {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mDot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        margin-top: 18px;
+        background: rgba(0, 0, 0, 0.55);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10);
+        transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .mLine {
+        position: absolute;
+        top: 30px;
+        bottom: -12px;
+        left: 50%;
+        width: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.05));
+    }
+
+    .mItem:last-child .mLine {
+        display: none;
+    }
+
+    .mCard {
+        border-radius: 14px;
+        padding: 12px 14px;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .mHead {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    .mNo {
+        font-weight: 950;
+        opacity: 0.8;
+    }
+
+    .mTitle {
+        font-size: 16px;
+        font-weight: 950;
+        letter-spacing: -0.01em;
+    }
+
+    .mDesc {
+        font-size: 13px;
+        line-height: 1.7;
+        opacity: 0.78;
+    }
+
+    .mActive {
+        opacity: 1;
+    }
+
+    .mActive .mCard {
+        background: #fff;
+        border-color: rgba(0, 0, 0, 0.18);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .mActive .mDot {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.14);
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* 모바일에서는 데스크탑 구조 숨김 */
+    .scrollStage,
+    .stickyShell,
+    .left,
+    .rail,
+    .list,
+    .anchors {
+        display: none !important;
+    }
+
+    .wrap {
+        padding-top: clamp(40px, 10vh, 110px);
+        padding-bottom: clamp(34px, 8vh, 90px);
+        min-height: unset;
+    }
+
+    .mTimeline {
+        margin-top: 18px;
+        text-align: left;
+    }
+
+    .mItem {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        padding: 10px 0;
+        opacity: 0.7;
+    }
+
+    .mMarker {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mDot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        margin-top: 18px;
+        background: rgba(0, 0, 0, 0.55);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10);
+        transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .mLine {
+        position: absolute;
+        top: 30px;
+        bottom: -12px;
+        left: 50%;
+        width: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.05));
+    }
+
+    .mItem:last-child .mLine {
+        display: none;
+    }
+
+    .mCard {
+        border-radius: 14px;
+        padding: 12px 14px;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .mHead {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+
+    .mNo {
+        font-weight: 950;
+        opacity: 0.8;
+    }
+
+    .mTitle {
+        font-size: 16px;
+        font-weight: 950;
+        letter-spacing: -0.01em;
+    }
+
+    .mDesc {
+        font-size: 13px;
+        line-height: 1.7;
+        opacity: 0.78;
+    }
+
+    .mActive {
+        opacity: 1;
+    }
+
+    .mActive .mCard {
+        background: #fff;
+        border-color: rgba(0, 0, 0, 0.18);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .mActive .mDot {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.14);
+    }
+}

@@ -16,6 +16,7 @@ import {
     CompanyHistory,
     CompanyCapabilitySection,
 } from "../../components/company";
+import Footer from "@/components/layout/Footer";
 
 export default function CompanyPage() {
     return (
@@ -38,7 +39,7 @@ export default function CompanyPage() {
                 <CompanyCapabilitySection />
             </section>
 
-            <section className={styles.section}>
+            <section id="company-certs">
                 <CompanyCerts />
             </section>
 
@@ -51,6 +52,8 @@ export default function CompanyPage() {
             </section>
 
             <ContactCTA />
+
+            <Footer />
         </main>
     );
 }

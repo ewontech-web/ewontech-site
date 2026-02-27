@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import ContactCTA from "@/components/layout/ContactCTA";
 import PageHero from "@/components/common/PageHero";
 import Container from "@/components/layout/Container";
+import Footer from "@/components/layout/Footer";
 
 export default function BusinessPage() {
     return (
@@ -33,6 +34,8 @@ export default function BusinessPage() {
             </section>
 
             <ContactCTA />
+
+            <Footer />
         </main>
     );
 }

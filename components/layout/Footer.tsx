@@ -1,7 +1,34 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Container from "./Container";
 
+function scrollToTopSmart() {
+    const prefersReduce =
+        window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+
+    const root = document.getElementById("scrollRoot");
+    if (root) {
+        root.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
+        return;
+    }
+
+    window.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
+}
+
 export default function Footer() {
+    const pathname = usePathname();
+
+    const onNav =
+        (href: string) =>
+            (e: React.MouseEvent) => {
+                if (href === pathname) {
+                    e.preventDefault();
+                    scrollToTopSmart();
+                }
+            };
+
     return (
         <footer className="border-t bg-neutral-950 text-neutral-200">
             <Container>
@@ -16,10 +43,18 @@ export default function Footer() {
                     <div className="space-y-2 text-sm">
                         <div className="font-semibold">Menu</div>
                         <div className="flex flex-col gap-1 text-neutral-400">
-                            <Link className="hover:text-white" href="/">Home</Link>
-                            <Link className="hover:text-white" href="/company">Company</Link>
-                            <Link className="hover:text-white" href="/business">Business</Link>
-                            <Link className="hover:text-white" href="/contact">Contact</Link>
+                            <Link className="hover:text-white" href="/" onClick={onNav("/")}>
+                                Home
+                            </Link>
+                            <Link className="hover:text-white" href="/company" onClick={onNav("/company")}>
+                                Company
+                            </Link>
+                            <Link className="hover:text-white" href="/business" onClick={onNav("/business")}>
+                                Business
+                            </Link>
+                            <Link className="hover:text-white" href="/contact" onClick={onNav("/contact")}>
+                                Contact
+                            </Link>
                         </div>
                     </div>
 

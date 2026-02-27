@@ -1,24 +1,33 @@
+/* CompanyHistory.module.css - FINAL (desktop+mobile) */
+
 .wrap {
     max-width: 980px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.head {
     text-align: center;
+    display: grid;
+    gap: 8px;
 }
 
 .title {
     margin: 0;
-    font-size: 22px;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 950;
     letter-spacing: -0.02em;
 }
 
 .subtitle {
-    margin: 8px 0 18px;
+    margin: 0;
     color: #5b6472;
     font-size: 13px;
     line-height: 1.5;
 }
 
 .timeline {
+    margin-top: 16px;
     text-align: left;
 }
 
@@ -28,6 +37,8 @@
     grid-template-columns: 34px 1fr;
     gap: 14px;
     padding: 12px 0;
+    opacity: 0.78;
+    transition: opacity 160ms ease;
 }
 
 /* Marker (dot/line) */
@@ -69,12 +80,12 @@
     padding: 14px 16px;
     background: #f7faff;
     border: 1px solid #e3ecff;
-    transition: background 160ms ease, border-color 160ms ease,
-        box-shadow 160ms ease, transform 160ms ease;
+    transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease,
+        transform 160ms ease;
 }
 
 .date {
-    font-weight: 800;
+    font-weight: 900;
     color: #0b1b33;
     font-size: 14px;
     letter-spacing: -0.01em;
@@ -87,7 +98,7 @@
     line-height: 1.65;
 }
 
-/* ✅ Desktop hover only */
+/* Desktop hover only */
 @media (hover: hover) and (pointer: fine) {
     .item:hover .card {
         background: #fff;
@@ -97,7 +108,11 @@
     }
 }
 
-/* ✅ Active (모바일 스크롤에서 바뀌고, 데스크탑은 0번만 유지됨) */
+/* Active (scroll highlight) */
+.active {
+    opacity: 1;
+}
+
 .active .card {
     background: #fff;
     border-color: rgba(47, 111, 237, 0.38);
@@ -119,6 +134,10 @@
 
 /* Mobile */
 @media (max-width: 640px) {
+    .timeline {
+        margin-top: 14px;
+    }
+
     .item {
         grid-template-columns: 28px 1fr;
         gap: 12px;
@@ -148,7 +167,8 @@
 @media (prefers-reduced-motion: reduce) {
 
     .dot,
-    .card {
+    .card,
+    .item {
         transition: none;
     }
 }

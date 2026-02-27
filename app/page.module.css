@@ -1,0 +1,43 @@
+.main {
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.section {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding: clamp(56px, 6vw, 96px) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.section:first-child {
+    border-top: none;
+}
+
+.heroSection {
+    padding: 0;
+    align-items: center;
+}
+
+.exitSection {
+    min-height: auto;
+    align-items: stretch;
+    padding: 0;
+}
+
+/* 섹션 기본 페이드(가벼운 느낌) */
+.section {
+    scroll-margin-top: 80px;
+    /* 헤더 있으면 */
+}
+
+/* motion-safe */
+@media (prefers-reduced-motion: no-preference) {
+    .section {
+        transition: filter 400ms ease;
+    }
+}

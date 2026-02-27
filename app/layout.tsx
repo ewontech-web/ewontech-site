@@ -16,7 +16,6 @@ export default function RootLayout({
       <body className="min-h-screen bg-white text-neutral-900">
         <Header />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   );
