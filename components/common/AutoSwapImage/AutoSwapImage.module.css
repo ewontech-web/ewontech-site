@@ -1,0 +1,30 @@
+.frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* 너 섹션 이미지 비율이랑 맞추기 */
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e7e9ef;
+    background: #fff;
+}
+
+.layer {
+    position: absolute;
+    inset: 0;
+    transition: opacity 600ms ease;
+}
+
+.show {
+    opacity: 1;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.img {
+    object-fit: cover;
+    object-position: center;
+}

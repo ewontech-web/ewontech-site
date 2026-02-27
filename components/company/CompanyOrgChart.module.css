@@ -1,0 +1,282 @@
+.wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.title {
+    margin: 0 0 18px;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+}
+
+/* ✅ 모바일/데스크탑 공통: 이 영역을 드래그(가로스크롤) */
+.dragArea {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+
+    touch-action: pan-x pan-y;
+
+    cursor: grab;
+    scrollbar-gutter: stable;
+}
+
+.dragArea:active {
+    cursor: grabbing;
+}
+
+/* 모바일에서 커서 의미 없어서 제거(선택) */
+@media (hover: none) {
+    .dragArea {
+        cursor: default;
+    }
+
+    .dragArea:active {
+        cursor: default;
+    }
+}
+
+/* ✅ 내부 콘텐츠 폭 (조직도+표) 를 한 덩어리로 */
+.dragInner {
+    display: inline-block;
+    width: max-content;
+    padding-bottom: 6px;
+}
+
+/* 카드 공통 */
+.card {
+    background: #fff;
+    border: 1px solid #e6e8ee;
+    border-radius: 16px;
+    padding: 18px 14px;
+}
+
+/* ✅ 조직도 카드 내부는 중앙 정렬 */
+.chartScroll {
+    display: flex;
+    justify-content: center;
+}
+
+.chartMinWidth {
+    min-width: 920px;
+    width: max-content;
+    padding: 6px 0 2px;
+}
+
+/* =========================
+   Tree Org Chart (라인 연결)
+   ========================= */
+.tree {
+    width: max-content;
+    /* ✅ 100% 금지 */
+    margin: 0 auto;
+    text-align: left;
+}
+
+.tree ul {
+    padding-top: 20px;
+    position: relative;
+    margin: 0;
+    padding-left: 0;
+}
+
+.tree li {
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 10px 0 10px;
+}
+
+/* 가로 라인 */
+.tree li::before,
+.tree li::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 2px solid #d7dde8;
+    width: 50%;
+    height: 20px;
+}
+
+.tree li::after {
+    right: auto;
+    left: 50%;
+}
+
+/* 외동 */
+.tree li:only-child::after,
+.tree li:only-child::before {
+    display: none;
+}
+
+/* 첫/마지막 라인 */
+.tree li:first-child::before {
+    border: 0 none;
+}
+
+.tree li:last-child::after {
+    border: 0 none;
+}
+
+/* 세로 라인 */
+.tree ul ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 2px solid #d7dde8;
+    width: 0;
+    height: 20px;
+}
+
+/* 노드 */
+.node {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: 2px solid #dbe0ea;
+    background: #f7f8fb;
+    color: #1f2a37;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    min-width: 180px;
+}
+
+.nodeStrong {
+    background: #0f2747;
+    border-color: #0f2747;
+    color: #fff;
+    min-width: 210px;
+}
+
+.nodeSmall {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 2px solid #dbe0ea;
+    background: #f7f8fb;
+    color: #1f2a37;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 140px;
+}
+
+/* float 해제 */
+.tree::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* =========================
+   Table
+   ========================= */
+.tableCard {
+    margin-top: 14px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #dbe0ea;
+    background: #fff;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 1100px;
+    /* ✅ 조직도랑 같이 드래그되게 넉넉히 */
+}
+
+.table th,
+.table td {
+    border-top: 1px solid #e8ebf2;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+.table thead th {
+    background: #dff3f3;
+    border-top: none;
+    font-weight: 800;
+}
+
+/* ✅ 모바일 더 작게 */
+@media (max-width: 640px) {
+    .card {
+        padding: 12px 8px;
+        border-radius: 12px;
+    }
+
+    .chartMinWidth {
+        min-width: 680px;
+        padding: 4px 0 0;
+    }
+
+    .node,
+    .nodeSmall,
+    .nodeStrong {
+        white-space: nowrap;
+    }
+
+    .node {
+        min-width: 120px;
+        padding: 8px 10px;
+        font-size: 13px;
+        border-radius: 11px;
+        border-width: 1.5px;
+    }
+
+    .nodeStrong {
+        min-width: 140px;
+    }
+
+    .nodeSmall {
+        min-width: 95px;
+        padding: 7px 10px;
+        font-size: 13px;
+        border-radius: 11px;
+        border-width: 1.5px;
+    }
+
+    .tree ul {
+        padding-top: 12px;
+    }
+
+    .tree li {
+        padding: 12px 6px 0 6px;
+    }
+
+    .tree li::before,
+    .tree li::after {
+        border-top-width: 1.5px;
+        height: 12px;
+    }
+
+    .tree ul ul::before {
+        border-left-width: 1.5px;
+        height: 12px;
+    }
+
+    .tableCard {
+        border-radius: 12px;
+    }
+
+    .table {
+        min-width: 820px;
+        font-size: 11px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px 6px;
+    }
+}

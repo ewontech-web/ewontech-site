@@ -1,0 +1,97 @@
+.wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.head {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.title {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+}
+
+.sub {
+    margin: 8px 0 0;
+    color: #5b6472;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.cards {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.card {
+    border: 1px solid #e6e8ee;
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 16px;
+    text-align: left;
+
+    /* ✅ 아주 약하게만 */
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.03);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.card:hover {
+    border-color: rgba(47, 111, 237, 0.22);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.045);
+}
+
+.cardTitle {
+    margin: 0 0 8px;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    color: #111827;
+}
+
+.desc {
+    margin: 0 0 12px;
+    color: #3f4652;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* 리스트: 점 표시로 가볍게 */
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #1f2937;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(15, 39, 71, 0.55);
+    flex: 0 0 6px;
+}
+
+@media (max-width: 860px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cardTitle {
+        font-size: 14px;
+    }
+}

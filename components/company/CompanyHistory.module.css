@@ -1,0 +1,174 @@
+/* CompanyHistory.module.css - FINAL (desktop+mobile) */
+
+.wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.head {
+    text-align: center;
+    display: grid;
+    gap: 8px;
+}
+
+.title {
+    margin: 0;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 950;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    margin: 0;
+    color: #5b6472;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.timeline {
+    margin-top: 16px;
+    text-align: left;
+}
+
+/* Row */
+.item {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    opacity: 0.78;
+    transition: opacity 160ms ease;
+}
+
+/* Marker (dot/line) */
+.marker {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    margin-top: 18px;
+    background: #0f2747;
+    box-shadow: 0 0 0 4px rgba(15, 39, 71, 0.12);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.line {
+    position: absolute;
+    top: 30px;
+    bottom: -12px;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom,
+            rgba(15, 39, 71, 0.18),
+            rgba(15, 39, 71, 0.06));
+}
+
+.item:last-child .line {
+    display: none;
+}
+
+/* Card */
+.card {
+    border-radius: 14px;
+    padding: 14px 16px;
+    background: #f7faff;
+    border: 1px solid #e3ecff;
+    transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.date {
+    font-weight: 900;
+    color: #0b1b33;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+}
+
+.text {
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+/* Desktop hover only */
+@media (hover: hover) and (pointer: fine) {
+    .item:hover .card {
+        background: #fff;
+        border-color: rgba(47, 111, 237, 0.28);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        transform: translateY(-1px);
+    }
+}
+
+/* Active (scroll highlight) */
+.active {
+    opacity: 1;
+}
+
+.active .card {
+    background: #fff;
+    border-color: rgba(47, 111, 237, 0.38);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+}
+
+.active .dot {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 5px rgba(15, 39, 71, 0.14);
+}
+
+/* Footer note */
+.footerNote {
+    margin: 18px 0 0;
+    color: #5b6472;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .timeline {
+        margin-top: 14px;
+    }
+
+    .item {
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        padding: 10px 0;
+    }
+
+    .card {
+        padding: 12px 14px;
+        border-radius: 12px;
+    }
+
+    .dot {
+        margin-top: 16px;
+        box-shadow: 0 0 0 3px rgba(15, 39, 71, 0.12);
+    }
+
+    .date {
+        font-size: 13px;
+    }
+
+    .text {
+        font-size: 13px;
+    }
+}
+
+/* A11y */
+@media (prefers-reduced-motion: reduce) {
+
+    .dot,
+    .card,
+    .item {
+        transition: none;
+    }
+}
