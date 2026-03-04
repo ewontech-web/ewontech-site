@@ -1,4 +1,5 @@
 import styles from "./ProductionShowcase.module.css";
+import Reveal from "@/components/common/Reveal";
 
 type Item = {
     key: string;
@@ -100,8 +101,9 @@ export default function ProductionShowcase() {
                         const reversed = idx % 2 === 1;
 
                         return (
-                            <article
+                            <Reveal
                                 key={it.key}
+                                as="article"
                                 className={`${styles.item} ${reversed ? styles.reverse : ""}`}
                             >
                                 <div className={styles.media}>
@@ -138,7 +140,7 @@ export default function ProductionShowcase() {
                                         </ul>
                                     </div>
                                 </div>
-                            </article>
+                            </Reveal>
                         );
                     })}
                 </div>
