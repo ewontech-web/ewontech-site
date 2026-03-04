@@ -5,6 +5,7 @@ import ContactCTA from "@/components/layout/ContactCTA";
 import PageHero from "@/components/common/PageHero";
 import Container from "@/components/layout/Container";
 import Footer from "@/components/layout/Footer";
+import Reveal from "@/components/common/Reveal"; // ✅ 추가
 
 export default function BusinessPage() {
     return (
@@ -17,24 +18,29 @@ export default function BusinessPage() {
 
             <section className={styles.section}>
                 <Container>
-                    <BusinessAreas />
+                    <Reveal>
+                        <BusinessAreas />
+                    </Reveal>
                 </Container>
             </section>
 
             <section className={styles.section}>
                 <Container>
-                    <ProductionShowcase />
+                    <Reveal>
+                        <ProductionShowcase />
+                    </Reveal>
                 </Container>
             </section>
 
             <section className={`${styles.section} ${styles.muted}`}>
                 <Container>
-                    <ProcessStrip />
+                    <Reveal>
+                        <ProcessStrip />
+                    </Reveal>
                 </Container>
             </section>
 
             <ContactCTA />
-
             <Footer />
         </main>
     );

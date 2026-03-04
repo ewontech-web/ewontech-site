@@ -51,12 +51,12 @@
     font-weight: 800;
     font-size: 15px;
     letter-spacing: -0.02em;
-    color: #111827;
+    color: rgba(20, 60, 130, 0.92);
 }
 
 .desc {
     margin: 0 0 12px;
-    color: #3f4652;
+    color: rgba(63, 70, 82, 0.92);
     font-size: 13px;
     line-height: 1.6;
 }

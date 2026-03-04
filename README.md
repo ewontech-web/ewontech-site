@@ -197,7 +197,7 @@ v1은 **페이지/섹션 구조를 빠르게 고정**하고, Contact 폼은 **UI
 - Business 이미지 에셋 추가
   - `public/business/cat-1.jpg` ~ `cat-6.jpg`
 
-  ### v1 6회차 (Home 페이지 v1) Home (마무리)
+### v1 6회차 (Home 페이지 v1) Home (마무리)
 - Home 페이지 섹션 구조 구현(섹션 1~4)
   - `components/home/HomeS1.tsx~HomeS4.tsx` + 각 `*.module.css`
 - Home 섹션2(Scope) 인터랙션/반응형 개선
