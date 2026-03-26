@@ -113,21 +113,6 @@ export default function HomeS4() {
                     </div>
                 </div>
             </div>
-
-            {/* ===== Area 3: Sitemap ===== */}
-            <div className={styles.area}>
-                <div className={styles.siteMap} aria-label="Sitemap">
-                    <div className={styles.siteHead}>SITEMAP</div>
-                    <div className={styles.siteList}>
-                        {sitemap.map((i) => (
-                            <a key={i.href} className={styles.siteItem} href={i.href}>
-                                <span className={styles.siteLabel}>{i.label}</span>
-                                <span className={styles.siteArrow} aria-hidden="true">→</span>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </div>
         </section>
     );
 }
