@@ -17,7 +17,6 @@ export default function HomeS1() {
             window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
         if (isMobile || isCoarse || reduce) {
-            setInView(true);
             return;
         }
 
@@ -37,17 +36,28 @@ export default function HomeS1() {
 
     return (
         <div ref={ref} className={`${styles.wrap} ${inView ? styles.in : ""}`}>
-            <div className={styles.kicker}>
-                <span className={styles.no}>01</span>
-                <span className={styles.label}>STATEMENT</span>
+            <div className={styles.bg} aria-hidden="true" />
+            <div className={styles.overlay} aria-hidden="true" />
+
+            <div className={styles.copy}>
+                <div className={styles.kicker}>
+                    <span className={styles.no}>01</span>
+                    <span className={styles.label}>STATEMENT</span>
+                </div>
+
+                <h1 className={styles.title}>
+                    <span>전자 제조의 흐름을</span>
+                    <span>품질 기준으로 연결합니다.</span>
+                </h1>
+
+                <p className={styles.lead}>
+                    설계 검토부터 조달, 생산, 검증, 출하까지 필요한 과정을 안정적으로 관리합니다.
+                </p>
+
+                <a className={styles.textLink} href="/contact">
+                    제조 협업 문의
+                </a>
             </div>
-
-            <h1 className={styles.title}>
-                <span className={styles.em}>품질 기준</span>으로 움직이는{" "}
-                <span className={styles.nowrap}>OEM 제조 협업.</span>
-            </h1>
-
-            <div className={styles.rule} aria-hidden="true" />
         </div>
     );
 }

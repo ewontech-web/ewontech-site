@@ -141,20 +141,20 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main id="scrollRoot" ref={mainRef as any} className={styles.main}>
-      <section ref={s1Ref as any} className={`${styles.section} ${styles.heroSection}`}>
-        <Container><HomeS1 /></Container>
+    <main id="scrollRoot" ref={mainRef} className={styles.main}>
+      <section ref={s1Ref} className={`${styles.section} ${styles.heroSection}`}>
+        <HomeS1 />
       </section>
 
-      <section ref={s2Ref as any} className={styles.section}>
+      <section ref={s2Ref} className={styles.section}>
         <Container><HomeS2 /></Container>
       </section>
 
-      <section ref={s3Ref as any} className={styles.section}>
+      <section ref={s3Ref} className={styles.section}>
         <Container><HomeS3 /></Container>
       </section>
 
-      <section ref={s4Ref as any} className={styles.section}>
+      <section ref={s4Ref} className={styles.section}>
         <Container><HomeS4 /></Container>
       </section>
 

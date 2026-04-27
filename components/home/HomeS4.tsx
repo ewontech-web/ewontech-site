@@ -16,12 +16,6 @@ const certs = [
     },
 ];
 
-const sitemap = [
-    { label: "Company", href: "/company" },
-    { label: "Business", href: "/business" },
-    { label: "Contact", href: "/contact" },
-];
-
 export default function HomeS4() {
     const ref = useRef<HTMLElement | null>(null);
     const [inView, setInView] = useState(false);
@@ -36,7 +30,6 @@ export default function HomeS4() {
             window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
         if (isMobile || isCoarse || reduce) {
-            setInView(true);
             return;
         }
 

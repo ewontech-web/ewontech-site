@@ -2,26 +2,28 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
 
   /* ✅ OS/브라우저 다크모드가 폼/스크롤바를 어둡게 바꾸는 걸 방지 */
   color-scheme: light;
 
   /* text */
-  --text-strong: #111827;
-  --text-body: #374151;
-  --text-muted: #6b7280;
+  --text-strong: #101828;
+  --text-body: #344054;
+  --text-muted: #667085;
 
-  /* accent blue */
-  --accent: #1d4ed8;
-  /* 지금 Contact에서 쓰는 파랑과 동일 */
-  --accent-weak: #eaf4ff;
-  /* 연한 배경 */
-  --accent-line: #cfe0ff;
-  /* 테두리/라인 */
+  --accent: #1f5fbf;
+  --accent-strong: #174a96;
+  --accent-weak: #eef5ff;
+  --accent-line: #c9dcfb;
 
-  --border-soft: #e7e7e7;
-  --surface-muted: #f5f5f5;
+  --border-soft: #e5e7eb;
+  --surface-muted: #f7f9fc;
+  --surface-raised: #ffffff;
+  --shadow-soft: 0 18px 45px rgba(16, 24, 40, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
 }
 
 /* Tailwind v4 theme mapping
@@ -41,6 +43,16 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+::selection {
+  background: rgba(31, 95, 191, 0.16);
 }
 
 /* ✅ 혹시 남아있는 다크모드 영향까지 한 번 더 차단(보험) */

@@ -1,13 +1,6 @@
 import styles from "./page.module.css";
 import PageHero from "../../components/common/PageHero";
 import ContactCTA from "@/components/layout/ContactCTA";
-
-<PageHero
-    title="Company"
-    subtitle="생산·검증 기반의 협력 경험으로 안정적인 제조 지원을 제공합니다."
-    bgImage="/company/hero.jpg"
-/>
-
 import {
     CompanyIntro,
     CompanyValues,

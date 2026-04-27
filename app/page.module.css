@@ -4,7 +4,10 @@
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    background: var(--background);
+    background:
+        radial-gradient(900px 520px at 88% 30%, rgba(31, 95, 191, 0.08), transparent 62%),
+        radial-gradient(720px 420px at 8% 62%, rgba(15, 23, 42, 0.05), transparent 64%),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 32%, #f7f9fc 100%);
     color: var(--foreground);
 }
 
@@ -13,7 +16,7 @@
     display: flex;
     align-items: center;
     padding: clamp(56px, 6vw, 96px) 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(229, 231, 235, 0.84);
 }
 
 .section:first-child {
@@ -23,6 +26,7 @@
 .heroSection {
     padding: 0;
     align-items: center;
+    display: block;
 }
 
 .exitSection {

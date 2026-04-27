@@ -21,7 +21,8 @@
     font-size: 12px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    opacity: 0.7;
+    color: var(--accent-strong);
+    font-weight: 800;
     margin-top: 6px;
 }
 
@@ -40,7 +41,7 @@
     line-height: 1.5;
     letter-spacing: -0.01em;
     font-weight: 900;
-    opacity: 0.92;
+    color: var(--text-strong);
     max-width: 46ch;
 }
 
@@ -85,7 +86,7 @@
     top: 8px;
     bottom: 8px;
     width: 2px;
-    background: rgba(0, 0, 0, 0.16);
+    background: var(--border-soft);
     border-radius: 2px;
 }
 
@@ -115,14 +116,14 @@
     width: 22px;
     height: 22px;
     border-radius: 999px;
-    background: rgba(0, 0, 0, 0.22);
+    background: #cbd5e1;
 }
 
 .stepNo {
     font-size: 16px;
     font-weight: 900;
     letter-spacing: 0.02em;
-    opacity: 0.8;
+    color: var(--text-muted);
 }
 
 .stepTitle {
@@ -137,7 +138,8 @@
 }
 
 .active .dot {
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--accent);
+    box-shadow: 0 0 0 5px rgba(31, 95, 191, 0.11);
 }
 
 .active .stepTitle {
@@ -163,7 +165,8 @@
     font-size: 12px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    opacity: 0.6;
+    color: var(--accent-strong);
+    font-weight: 900;
     margin-bottom: 12px;
 }
 
@@ -177,7 +180,7 @@
 .detailDesc {
     font-size: clamp(14px, 1.2vw, 16px);
     line-height: 1.75;
-    opacity: 0.82;
+    color: var(--text-body);
 }
 
 /* Scroll track */
@@ -347,8 +350,8 @@
     .mCard {
         border-radius: 14px;
         padding: 12px 14px;
-        background: rgba(0, 0, 0, 0.03);
-        border: 1px solid rgba(0, 0, 0, 0.10);
+        background: var(--surface-muted);
+        border: 1px solid var(--border-soft);
         transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
     }
 
@@ -382,13 +385,14 @@
 
     .mActive .mCard {
         background: #fff;
-        border-color: rgba(0, 0, 0, 0.18);
-        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+        border-color: var(--accent-line);
+        box-shadow: var(--shadow-soft);
     }
 
     .mActive .mDot {
         transform: scale(1.06);
-        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.14);
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(31, 95, 191, 0.14);
     }
 }
 

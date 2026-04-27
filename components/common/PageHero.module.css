@@ -1,6 +1,6 @@
 .hero {
     position: relative;
-    height: 320px;
+    height: 360px;
     overflow: hidden;
 }
 
@@ -15,7 +15,7 @@
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.42);
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.4));
 }
 
 .inner {
@@ -29,21 +29,22 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .title {
     margin: 0;
     color: #fff;
-    font-size: 36px;
+    font-size: clamp(34px, 4vw, 52px);
     letter-spacing: -0.02em;
 }
 
 .sub {
     margin: 0;
     color: rgba(255, 255, 255, 0.92);
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 62ch;
 }
 
 @media (max-width: 640px) {

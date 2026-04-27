@@ -16,8 +16,7 @@ export default function Reveal<T extends ElementType = "div">({
 }: RevealProps<T>) {
     const Tag = (as ?? "div") as ElementType;
 
-    // ref를 너무 엄격하게 잡으면 JSX에서 에러가 나서 any로 완화
-    const ref = useRef<any>(null);
+    const ref = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         const el = ref.current as Element | null;

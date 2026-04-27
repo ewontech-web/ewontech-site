@@ -3,9 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./HomeS3.module.css";
 
+const values = [
+    {
+        no: "01",
+        title: "기술력",
+        desc: "설계 검토와 생산 조건을 함께 봅니다.",
+    },
+    {
+        no: "02",
+        title: "신뢰성",
+        desc: "검증 기준으로 품질 편차를 줄입니다.",
+    },
+    {
+        no: "03",
+        title: "미래지향성",
+        desc: "공정 데이터를 반영해 개선합니다.",
+    },
+];
+
 export default function HomeS3() {
     const wrapRef = useRef<HTMLDivElement | null>(null);
-    const rightRef = useRef<HTMLDivElement | null>(null);
     const [inView, setInView] = useState(false);
 
     // 진입 fade
@@ -19,7 +36,6 @@ export default function HomeS3() {
             window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
         if (isMobile || isCoarse || reduce) {
-            setInView(true);
             return;
         }
 
@@ -37,53 +53,6 @@ export default function HomeS3() {
         return () => io.disconnect();
     }, []);
 
-    // parallax (desktop only)
-    useEffect(() => {
-        const el = rightRef.current;
-        if (!el) return;
-
-        const isMobile = window.matchMedia("(max-width: 900px)").matches;
-        const isCoarse = window.matchMedia("(pointer: coarse)").matches;
-        const reduce =
-            window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
-
-        if (isMobile || isCoarse || reduce) return;
-
-        let raf = 0;
-
-        const update = () => {
-            raf = 0;
-            const r = el.getBoundingClientRect();
-            const vh = window.innerHeight;
-
-            // progress: 0(아래)~1(위) 느낌으로 중앙 기준 움직임
-            const mid = r.top + r.height * 0.5;
-            const p = Math.max(0, Math.min(1, 1 - mid / vh)); // 0~1
-            const centered = (p - 0.5) * 2; // -1~1
-
-            // 각 요소별 이동량(px)
-            el.style.setProperty("--ty1", `${centered * -18}px`);
-            el.style.setProperty("--ty2", `${centered * 26}px`);
-            el.style.setProperty("--ty3", `${centered * -22}px`);
-            el.style.setProperty("--tyDot", `${centered * 14}px`);
-        };
-
-        const onScroll = () => {
-            if (raf) return;
-            raf = window.requestAnimationFrame(update);
-        };
-
-        update();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onScroll);
-
-        return () => {
-            if (raf) cancelAnimationFrame(raf);
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", onScroll);
-        };
-    }, []);
-
     return (
         <div ref={wrapRef} className={`${styles.wrap} ${inView ? styles.in : ""}`}>
             <div className={styles.left}>
@@ -91,21 +60,26 @@ export default function HomeS3() {
                     <span className={styles.no}>03</span>
                     <span className={styles.label}>VALUE</span>
                 </div>
-                <h2 className={styles.title}>Vision & Value.</h2>
-                <p className={styles.desc}>기술로 세상을 바꾸고, 정밀함으로 내일을 설계합니다</p>
+                <h2 className={styles.title}>제조 협업의 기준을 세웁니다.</h2>
+                <p className={styles.desc}>
+                    좋은 제품은 기술 검토, 품질 관리, 지속적인 개선이 같은 방향으로 움직일 때 완성됩니다.
+                </p>
             </div>
 
-            <div ref={rightRef} className={styles.right}>
-                <div className={styles.pills} aria-label="Values">
-                    <span className={styles.pill}>기술력</span>
-                    <span className={styles.pill}>신뢰성</span>
-                    <span className={styles.pill}>미래지향성</span>
+            <div className={styles.right} aria-label="이원테크 핵심 가치">
+                <div className={styles.valueMap}>
+                    {values.map((value, index) => (
+                        <article
+                            key={value.no}
+                            className={`${styles.mapCircle} ${index === 0 ? styles.mapTech : index === 1 ? styles.mapTrust : styles.mapFuture}`}
+                        >
+                            <span className={styles.cardNo}>{value.no}</span>
+                            <h3>{value.title}</h3>
+                            <p>{value.desc}</p>
+                        </article>
+                    ))}
+                    <span className={styles.mapGuide} />
                 </div>
-
-                <div className={`${styles.circle} ${styles.c1}`}>기술력</div>
-                <div className={`${styles.circle} ${styles.c2}`}>신뢰성</div>
-                <div className={`${styles.circle} ${styles.c3}`}>미래지향성</div>
-                <div className={styles.dotted} aria-hidden="true" />
             </div>
         </div>
     );
