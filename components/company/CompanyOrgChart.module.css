@@ -7,7 +7,7 @@
 
 .title {
     margin: 0 0 18px;
-    font-size: 22px;
+    font-size: clamp(28px, 3vw, 36px);
     letter-spacing: -0.02em;
 }
 
@@ -191,7 +191,7 @@
 .table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13px;
+    font-size: 15px;
     min-width: 1100px;
     /* ✅ 조직도랑 같이 드래그되게 넉넉히 */
 }

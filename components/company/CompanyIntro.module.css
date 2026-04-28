@@ -19,14 +19,14 @@
 
 .head {
     margin: 0 0 14px;
-    font-size: 22px;
+    font-size: clamp(28px, 3vw, 36px);
     letter-spacing: -0.02em;
 }
 
 .p {
     margin: 0 0 12px;
     color: #3f4652;
-    font-size: 14px;
+    font-size: var(--font-body);
     line-height: 1.75;
     /* ✅ 약간 더 편하게 */
 }

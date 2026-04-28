@@ -11,15 +11,15 @@
 
 .title {
     margin: 0;
-    font-size: 22px;
+    font-size: clamp(28px, 3vw, 36px);
     letter-spacing: -0.02em;
 }
 
 .sub {
     margin: 8px 0 0;
     color: #5b6472;
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: var(--font-body);
+    line-height: 1.65;
 }
 
 .cards {
@@ -49,7 +49,7 @@
 .cardTitle {
     margin: 0 0 8px;
     font-weight: 800;
-    font-size: 15px;
+    font-size: var(--font-card-title);
     letter-spacing: -0.02em;
     color: rgba(20, 60, 130, 0.92);
 }
@@ -57,7 +57,7 @@
 .desc {
     margin: 0 0 12px;
     color: rgba(63, 70, 82, 0.92);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.6;
 }
 
@@ -74,7 +74,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 15px;
     color: #1f2937;
 }
 
@@ -92,6 +92,6 @@
     }
 
     .cardTitle {
-        font-size: 14px;
+        font-size: 18px;
     }
 }

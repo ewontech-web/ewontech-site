@@ -15,14 +15,14 @@
 
 .title {
     margin: 10px 0 0;
-    font-size: 28px;
+    font-size: var(--font-section-title);
     letter-spacing: -0.02em;
 }
 
 .sub {
     margin: 10px auto 0;
     max-width: 760px;
-    font-size: 14px;
+    font-size: var(--font-body);
     line-height: 1.7;
     color: rgba(0, 0, 0, 0.58);
 }
@@ -115,7 +115,7 @@
 
 .itemTitle {
     margin: 0 0 14px;
-    font-size: 22px;
+    font-size: clamp(24px, 2vw, 28px);
     letter-spacing: -0.02em;
     line-height: 1.25;
     color: rgba(20, 60, 130, 0.92);
@@ -127,7 +127,7 @@
 }
 
 .blockLabel {
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(20, 60, 130, 0.70);
@@ -162,7 +162,7 @@
 .note {
     margin: 18px 0 0;
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
     color: rgba(0, 0, 0, 0.55);
 }
 

@@ -1,7 +1,7 @@
 .title {
     margin: 0 0 8px;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 22px;
     color: rgba(20, 60, 130, 0.92);
 }
 
@@ -37,7 +37,7 @@
 }
 
 .addrLabel {
-    font-size: 12px;
+    font-size: 14px;
     padding: 6px 10px;
     border-radius: 999px;
     background: #fff;
@@ -47,7 +47,7 @@
 }
 
 .addrText {
-    font-size: 13px;
+    font-size: 15px;
     color: #333;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -61,7 +61,7 @@
 }
 
 .miniBtn {
-    font-size: 13px;
+    font-size: 15px;
     padding: 8px 12px;
     border-radius: 999px;
     text-decoration: none;
