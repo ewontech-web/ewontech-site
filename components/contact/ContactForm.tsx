@@ -170,6 +170,9 @@ export default function ContactForm() {
                             {c}
                         </button>
                     ))}
+                    <a className={styles.pill} href="https://www.zeuon.com/contact">
+                        제온 홈페이지
+                    </a>
                 </div>
                 <div className={styles.hr} />
             </div>
